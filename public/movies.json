@@ -3,12 +3,37 @@
     {
       "id": "1",
       "title": "Inception",
-      "medium_cover_image": "https://example.com/inception.jpg"
+      "medium_cover_image": "https://m.media-amazon.com/images/I/71pVh9hddkL._AC_SY679_.jpg",
+      "rating": 8.8,
+      "isLiked": false
     },
     {
       "id": "2",
+      "title": "The Dark Knight",
+      "medium_cover_image": "https://m.media-amazon.com/images/I/91KkdtFOF8L._AC_SY679_.jpg",
+      "rating": 9.0,
+      "isLiked": true
+    },
+    {
+      "id": "3",
       "title": "Interstellar",
-      "medium_cover_image": "https://example.com/interstellar.jpg"
+      "medium_cover_image": "https://m.media-amazon.com/images/I/71FqDhvz-sL._AC_SY679_.jpg",
+      "rating": 8.6,
+      "isLiked": true
+    },
+    {
+      "id": "4",
+      "title": "The Matrix",
+      "medium_cover_image": "https://m.media-amazon.com/images/I/81gf1A4zTTL._AC_SY679_.jpg",
+      "rating": 8.7,
+      "isLiked": false
+    },
+    {
+      "id": "5",
+      "title": "The Shawshank Redemption",
+      "medium_cover_image": "https://m.media-amazon.com/images/I/91K7kF7RZbL._AC_SY679_.jpg",
+      "rating": 9.3,
+      "isLiked": true
     }
   ]
 }

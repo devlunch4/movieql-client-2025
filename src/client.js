@@ -1,23 +1,24 @@
 import { ApolloClient, InMemoryCache, gql, makeVar } from "@apollo/client";
 
 // Apollo Client의 로컬 상태 변수
-const moviesVar = makeVar([]);
+export const moviesVar = makeVar([]);
 
 // JSON 데이터를 불러와서 상태로 저장하는 함수
 const loadMovies = async () => {
   try {
-    const response = await fetch("/movies.json"); // 경로 수정
+    const response = await fetch("/movies.json"); // public/movies.json 경로
     if (!response.ok) {
       throw new Error("Failed to load movies data");
     }
     const data = await response.json();
-    moviesVar(data.allMovies); // JSON 데이터를 Apollo 상태 변수에 저장
+    moviesVar(data.allMovies || []); // JSON 데이터의 allMovies를 상태 변수에 저장
   } catch (error) {
     console.error("Error loading movies:", error);
+    moviesVar([]); // 에러 발생 시 빈 배열로 초기화
   }
 };
 
-// Apollo Client 타입 정의
+// GraphQL 타입 정의
 const typeDefs = gql`
   type Movie {
     id: ID!
@@ -29,6 +30,7 @@ const typeDefs = gql`
 
   type Query {
     allMovies: [Movie]!
+    movie(id: ID!): Movie
   }
 `;
 
@@ -38,12 +40,18 @@ const client = new ApolloClient({
   typeDefs,
   resolvers: {
     Query: {
-      allMovies: () => moviesVar(), // Apollo가 상태 변수를 가져오도록 설정
+      // allMovies 쿼리: moviesVar에서 전체 영화 목록 반환
+      allMovies: () => moviesVar(),
+      // movie 쿼리: moviesVar에서 ID로 특정 영화 필터링
+      movie: (_, { id }) => {
+        const movies = moviesVar();
+        return movies.find((movie) => movie.id === id) || null;
+      },
     },
   },
 });
 
-// JSON 데이터 로드 후 Apollo 상태 업데이트
+// JSON 데이터 로드
 loadMovies();
 
 export default client;
