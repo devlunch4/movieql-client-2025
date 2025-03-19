@@ -1,0 +1,14 @@
+{
+  "allMovies": [
+    {
+      "id": "1",
+      "title": "Inception",
+      "medium_cover_image": "https://example.com/inception.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Interstellar",
+      "medium_cover_image": "https://example.com/interstellar.jpg"
+    }
+  ]
+}
